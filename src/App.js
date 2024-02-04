@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Avatar, Box } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
-import TextField from "@mui/material/TextField";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import TextField from "@mui/material/TextField";
+// import Radio from "@mui/material/Radio";
+// import RadioGroup from "@mui/material/RadioGroup";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import FormControl from "@mui/material/FormControl";
+// import FormLabel from "@mui/material/FormLabel";
+// import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+// import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+// import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import { Controller } from "react-hook-form";
 import { styled } from '@mui/material/styles';
 import AspectRatio from "@mui/joy/AspectRatio";
 import Button from "@mui/joy/Button";
 import SvgIcon from "@mui/joy/SvgIcon";
 import QRCode from "react-qr-code";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { useForm } from "react-hook-form";
 import './App.css';
+import { InputText } from './components/textField';
+import { InputRadio } from './components/radioButton';
+import { InputDate } from "./components/datePicker";
+
 
 export default function App() {
   const VisuallyHiddenInput = styled('input')({
@@ -130,6 +136,30 @@ export default function App() {
   //     setHelperText("")
   //   }
   // };
+  const defaultValues = {
+    textValue: "",
+    radioValue: "",
+    checkboxValue: [],
+    dateValue: new Date(),
+    dropdownValue: "",
+    sliderValue: 0,
+  };
+
+  const options = [
+    {
+      label: "male",
+      value: "male",
+    },
+    {
+      label: "female",
+      value: "female",
+    },
+  ];
+  const { handleSubmit, reset, control, setValue } = useForm({
+    defaultValues: defaultValues,
+  });
+
+  const onSubmit = (data) => console.log(data);
   return (
     <div
       style={{
@@ -148,90 +178,40 @@ export default function App() {
         <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
       </div>
       <div>
-        <div>
-          <TextField
-            Name="name"
-            error={!nameValid}
-            id="outlined-error-helper-text"
-            label="Name"
-            variant="outlined"
-            onChange={(e) => setName(e.target.value)}
-            helperText={nameHelperText}
-          />
+        <div style={{width: "200px"}}>
+          <InputText name="name" control={control} label="Enter Name" />
         </div>
-        <div style={{ display: "flex", gap: "10px" }}>
+        {/* <div style={{ display: "flex", gap: "10px" }}> */}
           <div>
-            <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label">
-                Gender
-              </FormLabel>
-              <RadioGroup
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-                onChange={(e) => setGender(e.target.value)}
-              >
-                <FormControlLabel
-                  value="female"
-                  control={<Radio />}
-                  label="Female"
-                />
-                <FormControlLabel
-                  value="male"
-                  control={<Radio />}
-                  label="Male"
-                />
-              </RadioGroup>
-            </FormControl>
+            <InputRadio
+              name={"gender"}
+              control={control}
+              label={"Gender"}
+              options={options}
+            />
           </div>
           <div>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker onChange={(e) => setDob(e)} label="DOB" />
               </DemoContainer>
-            </LocalizationProvider>
+            </LocalizationProvider> */}
+          <InputDate name="dob" control={control} label="DOB" />
           </div>
-        </div>
+        {/* </div> */}
       </div>
       <div>
-        <TextField
-          Name="Allergies"
-          onChange={(e) => setAllergies(e.target.value)}
-          error={!AllergiesValid}
-          id="outlined-basic"
-          label="Allergies"
-          variant="outlined"
-          helperText={allergiesHelperText} />
+        <InputText name="textValue" control={control} label="Text Input" />
       </div>
       <div>
-        <TextField
-          Name="Address"
-          onChange={(e) => setAddress(e.target.value)}
-          error={!addressValid}
-          id="outlined-basic"
-          label="Address"
-          variant="outlined"
-          helperText={addressHelperText} />
+        <InputText name="textValue" control={control} label="Text Input" />
       </div>
       <div>
-        <TextField
-          onChange={(e) => setPostcode(e.target.value)}
-          Name="Postcode"
-          error={!postcodeValid}
-          id="outlined-basic"
-          label="Postcode"
-          variant="outlined"
-          helperText={postHelperText} />
+        <InputText name="textValue" control={control} label="Text Input" />
       </div>
       <div style={{ display: "flex", gap: "10px" }}>
-        <TextField id="outlined-basic" label="city" variant="outlined"
-          onChange={(e) => setCity(e.target.value)}
-          error={!cityValid}
-          helperText={cityHelperText} />
-        <TextField
-          error={!countryValid}
-          helperText={CountryHelperText}
-          onChange={(e) => setCountry(e.target.value)} id="outlined-basic" label="country" variant="outlined" />
+        <InputText name="textValue" control={control} label="Text Input" />
+        <InputText name="textValue" control={control} label="Text Input" />
       </div>
       <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
         select an children profile background color
