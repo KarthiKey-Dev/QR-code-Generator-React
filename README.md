@@ -1,70 +1,31 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## QR Code Generator with Editable Form
 
-## Available Scripts
+### Project Description
 
-In the project directory, you can run:
+This project is a React-based web application that allows users to input their personal information (Name, City, Country) and generate a QR code based on the provided data. The application uses Material-UI for styling and components, including text fields and buttons, along with react-hook-form for form handling. Additionally, the QR code is generated using the `react-qr-code` library.
 
-### `npm start`
+### Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **Form Input**: Users can enter their Name, City, and Country into text fields.
+2. **QR Code Generation**: Upon submitting the form, a QR code is generated based on the entered data.
+3. **Form and QR Code State Management**:
+   - Once the QR code is generated, the form fields and submit button are disabled to prevent further edits.
+   - An "Edit" button is provided to re-enable the form fields, allowing users to update their information. When editing, the QR code is hidden.
+4. **Styled Components**: Utilizes Material-UI's styled components for a consistent and modern look and feel.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Technologies Used
 
-### `npm test`
+- **React**: For building the user interface and managing state.
+- **Material-UI**: For UI components and styling.
+- **react-qr-code**: For generating QR codes from user input.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### How It Works
 
-### `npm run build`
+1. **User Input**: The user enters their Name, City, and Country into the respective text fields.
+2. **Form Submission**: When the user submits the form, the entered data is used to generate a QR code.
+3. **State Management**: The form fields and submit button are disabled after the QR code is generated to prevent further edits. The QR code is displayed to the user.
+4. **Editing**: The user can click the "Edit" button to enable the form fields again and hide the QR code, allowing them to update their information and generate a new QR code.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project demonstrates the integration of various modern web development technologies to create an interactive and user-friendly application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
