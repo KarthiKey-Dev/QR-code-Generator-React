@@ -1,12 +1,26 @@
 import React, { useState } from "react";
 import { TextField } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import Button from "@mui/joy/Button";
 import QRCode from "react-qr-code";
 import { useForm } from "react-hook-form";
 import "./App.css";
 
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  height: 1,
+  overflow: "hidden",
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  whiteSpace: "nowrap",
+  width: 1,
+});
+
 export default function App() {
   const [generateqrCode, setGenerateQRcode] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     city: "",
@@ -18,6 +32,12 @@ export default function App() {
   const onSubmit = (data) => {
     setFormData(data);
     setGenerateQRcode(true);
+    setIsEditing(false);
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+    setGenerateQRcode(false);
   };
 
   return (
@@ -38,27 +58,34 @@ export default function App() {
               id="outlined-basic"
               label="Name"
               variant="outlined"
+              disabled={generateqrCode && !isEditing}
             />
             <TextField
               {...register("city")}
               id="outlined-basic"
               label="City"
               variant="outlined"
+              disabled={generateqrCode && !isEditing}
             />
             <TextField
               {...register("country")}
               id="outlined-basic"
               label="Country"
               variant="outlined"
+              disabled={generateqrCode && !isEditing}
             />
-            <Button sx={{ margin: "10px" }} type="submit">
+            <Button
+              sx={{ margin: "10px" }}
+              type="submit"
+              disabled={generateqrCode && !isEditing}
+            >
               Submit
             </Button>
           </div>
         </form>
       </div>
 
-      {generateqrCode && (
+      {generateqrCode && !isEditing && (
         <div
           style={{
             height: 200,
@@ -72,6 +99,9 @@ export default function App() {
             value={`${formData.name}, ${formData.city}, ${formData.country}`}
             viewBox={`0 0 500 500`}
           />
+          <Button sx={{ margin: "10px" }} onClick={handleEdit}>
+            Edit
+          </Button>
         </div>
       )}
     </div>
